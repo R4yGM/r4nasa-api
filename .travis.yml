@@ -1,0 +1,9 @@
+language: nodejs
+
+nodejs:
+    - 10.11.0
+before-script:
+  composer install --no interaction
+
+  script:
+    -index.js
