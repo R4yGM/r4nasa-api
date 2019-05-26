@@ -24,5 +24,37 @@ this module has dependencies so it works only if fs and https are installed
 $ npm install https
 $ npm install fs
 ```
+# Example
+at top add the two const for r4nasa and fs
+```JavaScript
+const r4nasa = require('r4nasa-api')
+const fs = require('fs');
+```
+this module has a function that retuns the data you requested in a json file called requested_data.json
+
+## Random Mars images by random rovers
+  to get random Mars images by random rovers you have to request data with a function
+  ```JavaScript
+r4nasa.Req_Mars()
+```
+this will write data in requested_data.json
+  ```Json
+{
+"img":"http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01344/opgs/edr/fcam/FRB_516810721EDR_F0541238FHAZ00304M_.JPG",
+"sol":1344,
+"rover":"Curiosity",
+"date":"2016-05-17"
+}
+```
+and then in your script you have to parse it with fs module that you have installed
+
+
+  ```JavaScript
+  //don't change requested_data.json path!
+let rawdata = fs.readFileSync('./requested_data.json');  
+var json = JSON.parse(rawdata)
+//here are you going to get the img value in the json file 
+console.log(json.img)
+```
 
 
