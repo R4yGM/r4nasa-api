@@ -33,7 +33,7 @@ const fs = require('fs');
 this module has a function that retuns the data you requested in a json file called requested_data.json
 
 ## Random Mars images by random rovers
-  to get random Mars images by random rovers you have to request data with a function
+  to get thousands random Mars images by random rovers you have to request data with a function
   ```JavaScript
 r4nasa.Req_Mars()
 ```
@@ -56,5 +56,6 @@ var json = JSON.parse(rawdata)
 //here are you going to get the img value in the json file 
 console.log(json.img)
 ```
+the module is still in development so it doesn't have all the functions
 
 
