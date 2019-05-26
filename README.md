@@ -28,7 +28,7 @@ $ npm install fs
 at top add the two const for r4nasa and fs
 ```JavaScript
 const r4nasa = require('r4nasa-api')
-const fs = require('fs');
+const fs = require('file system');
 ```
 this module has a function that retuns the data you requested in a json file called requested_data.json
 
