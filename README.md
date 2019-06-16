@@ -17,7 +17,7 @@
 [![use](https://img.shields.io/badge/dependencies-https-important.svg)
 
 
-In development 
+In development.
 
 # Installation
 just type this to install the module
