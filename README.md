@@ -68,7 +68,7 @@ var json = JSON.parse(rawdata)
 console.log(json.img)
 ```
 the final script will looks like
-```
+```JavaScript
 const r4nasa = require('r4nasa-api')
 const fs = require('fs');
 const R4nasa = new r4nasa({token:'YOUR_TOKEN'});
