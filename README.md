@@ -24,18 +24,22 @@ just type this to install the module
 ```bash
 $ npm install r4nasa-api
 ```
-this module has dependencies so it works only if fs and https are installed
+this module has dependencies so it works only if fs and https are installed also this module has a function that retuns the data you requested in a json file called requested_data.json
 ```bash
 $ npm install https
 $ npm install file system
 ```
 # Example
-at top add the two const for r4nasa and fs
+at top add the two constants for r4nasa and fs
 ```JavaScript
 const r4nasa = require('r4nasa-api')
 const fs = require('fs');
 ```
-this module has a function that retuns the data you requested in a json file called requested_data.json
+then add the line
+```JavaScript
+const R4nasa = new r4nasa({token:'YOUR_TOKEN'});
+```
+replace YOUR_TOKEN with your registration token where you can found it [![Here](https://api.nasa.gov/index.html#apply-for-an-api-key)
 
 ## Random Mars images by random rovers
   to get thousands random Mars images by random rovers you have to request data with a function that returns 1 image and some data
