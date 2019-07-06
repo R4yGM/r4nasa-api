@@ -39,14 +39,17 @@ then add the line
 ```JavaScript
 const R4nasa = new r4nasa({token:'YOUR_TOKEN'});
 ```
-replace YOUR_TOKEN with your registration token where you can found it [![Here](https://api.nasa.gov/index.html#apply-for-an-api-key)
+replace YOUR_TOKEN with your registration token where you can found it [Here](https://api.nasa.gov/index.html#apply-for-an-api-key)
 
-## Random Mars images by random rovers
-  to get thousands random Mars images by random rovers you have to request data with a function that returns 1 image and some data
+## Random Mars images by sol
+  to get thousands random Mars images by random rovers you have to request data with a function that returns 1 image and some data type
   ```JavaScript
-r4nasa.Req_Mars()
+R4nasa.RequestMars_sol(rover, sol)
 ```
-this will write data in requested_data.json
+in the two parameters you have to add the rover name(Curiosity is the rover with more data) and a random sol
+
+
+this will create and write data in a json filed called requested_data.json
   ```Json
 {
 "img":"http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01344/opgs/edr/fcam/FRB_516810721EDR_F0541238FHAZ00304M_.JPG",
@@ -55,8 +58,7 @@ this will write data in requested_data.json
 "date":"2016-05-17"
 }
 ```
-and then in your script you have to parse it with fs module that you have installed
-
+and then in your script you have to parse the data with fs module that you have installed
 
   ```JavaScript
   //don't change requested_data.json path!
@@ -64,6 +66,30 @@ let rawdata = fs.readFileSync('./requested_data.json');
 var json = JSON.parse(rawdata)
 //here are you going to get the img value in the json file 
 console.log(json.img)
+```
+the final script will looks like
+```
+const r4nasa = require('r4nasa-api')
+const fs = require('fs');
+const R4nasa = new r4nasa({token:'YOUR_TOKEN'});
+
+//this is the parse function that will be parse the data in the json file
+function parse()
+{
+let rawdata = fs.readFileSync('./requested_data.json');  
+var json = JSON.parse(rawdata)
+//here are you going to get the img value in the json file
+console.log(json.img)
+}
+
+//this is a random number for a random sol
+var randomSOL = Math.floor(Math.random() * 2394);
+
+// writing and creating the file with data
+R4nasa.RequestMars_sol("Curiosity", randomSOL)
+// generating data requires time, and if the parse function is called before RequestMars_sol finish this will return an error 
+setTimeout(parse, 3800);
+
 ```
 the module is still in development so it doesn't have all the functions
 
