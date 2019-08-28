@@ -9,35 +9,11 @@ const fs = require('fs');
 
 var token2;
 
-RequestMars_sol = function (rover, sol) {
-  if (typeof rover == "undefined") {
-    rover = 'Curiosity'
-  }
-  if (fs.existsSync('requested_data.json')) {
-    fs.unlink('requested_data.json', function (err) {
-      if (err) throw err;
-    });
-  } else {
-    fs.writeFileSync('requested_data.json', function (err) {
-      if (err) throw err;
-    });
-  }
-  if (!rover == typeof ('string')) {
-    return rover = 'Curiosity'
-  }
-  if (!sol == typeof ('number')) {
-    return sol = '1';
-  }
-
-  var dataToken = JSON.stringify(token2)
-  var gg = JSON.parse(dataToken)
-  const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + rover + '/photos?sol=' + sol + '&api_key=' + gg.token;
-  https.get(url, (resp) => {
+RequestMars_sol = function (rover = 'Curiosity', sol = 1) {
+  const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + rover + '/photos?sol=' + sol + '&api_key=' + token2.token;
+  https.get(url, resp => {
     let data = '';
-
-    resp.on('data', (chunk) => {
-      data += chunk;
-    });
+    resp.on('data', chunk => data += chunk);
 
     return resp.on('end', () => {
       const json = JSON.parse(data);
@@ -58,54 +34,17 @@ RequestMars_sol = function (rover, sol) {
         }
 
         var str = JSON.stringify(jsonFile)
-
-        if (fs.existsSync('requested_data.json')) {
-          fs.writeFileSync("requested_data.json", str)
-        } else {
-          fs.writeFileSync('./requested_data.json', function (err) {
-            if (err) throw err;
-          });
-          fs.writeFileSync("requested_data.json", str)
-        }
-
+        fs.writeFileSync("requested_data.json", str)
       }
     });
-  }).on("error", (err) => {
-    console.log("Error: " + err.message);
-  });
+  }).on("error", (err) => console.log("Error: " + err.message));
 }
-RequestMars_date = function (rover, date) {
-
-  if (fs.existsSync('requested_data.json')) {
-    fs.unlink('requested_data.json', function (err) {
-      if (err) throw err;
-    });
-  } else {
-    fs.writeFileSync('requested_data.json', function (err) {
-      if (err) throw err;
-    });
-  }
-  if (!rover == typeof ('string')) {
-    return rover = 'Curiosity'
-  }
-  if (!date == typeof ('number')) {
-    return date = '2015-6-3';
-  }
-  if (date == "undefined") {
-    return date = '2015-6-3'
-  }
-  if (rover == "undefinded") {
-    return rover = 'Curiosity'
-  }
-  var dataToken = JSON.stringify(token2)
-  var gg = JSON.parse(dataToken)
-  const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + rover + '/photos?earth_date=' + date + '&api_key=' + gg.token;
+RequestMars_date = function (rover = 'Curiosity', date = '2015-6-3') {
+  const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + rover + '/photos?earth_date=' + date + '&api_key=' + token2.token;
   https.get(url, (resp) => {
     let data = '';
 
-    resp.on('data', (chunk) => {
-      data += chunk;
-    });
+    resp.on('data', chunk => data += chunk);
 
     return resp.on('end', () => {
       const json = JSON.parse(data);
@@ -124,52 +63,26 @@ RequestMars_date = function (rover, date) {
         }
 
         var str = JSON.stringify(jsonFile)
-        if (fs.existsSync('requested_data.json')) {
-          fs.writeFileSync("requested_data.json", str)
-        } else {
-          fs.writeFileSync('./requested_data.json', function (err) {
-            if (err) throw err;
-          });
-          fs.writeFileSync("requested_data.json", str)
-        }
-
+        fs.writeFileSync("requested_data.json", str)
       }
     });
   }).on("error", (err) => {
     console.log("Error: " + err.message);
   });
 }
-RequestMars = function (rover) {
-
-  if (fs.existsSync('requested_data.json')) {
-    fs.unlink('requested_data.json', function (err) {
-      if (err) throw err;
-    });
-  } else {
-    fs.writeFileSync('requested_data.json', function (err) {
-      if (err) throw err;
-    });
-  }
-  if (!rover == typeof ('string')) {
-    return rover = 'Curiosity'
-  }
-
+RequestMars = function (rover = 'Curiosity') {
   const numbe = Math.floor(Math.random() * 2394);
-
-  var dataToken = JSON.stringify(token2)
-  var gg = JSON.parse(dataToken)
-  const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + rover + '/photos?sol=' + numbe + '&api_key=' + gg.token;
+  const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + rover + '/photos?sol=' + numbe + '&api_key=' + token2.token;
   https.get(url, (resp) => {
     let data = '';
 
-    resp.on('data', (chunk) => {
-      data += chunk;
-    });
+    resp.on('data', chunk => data += chunk);
 
     return resp.on('end', () => {
       const json = JSON.parse(data);
+      console.log(json.photos.length);
       if (data == '{"photos":[]}') {
-        console.log('sol :', sol + ' has no data for', rover, 'rover')
+        console.log('sol :', numbe + ' has no data for', rover, 'rover')
         RequestMars(rover)
       } else {
         const img = json.photos[0].img_src
@@ -184,26 +97,14 @@ RequestMars = function (rover) {
         }
 
         var str = JSON.stringify(jsonFile)
-
-        if (fs.existsSync('requested_data.json')) {
-          fs.writeFileSync("requested_data.json", str)
-        } else {
-          fs.writeFileSync('./requested_data.json', function (err) {
-            if (err) throw err;
-          });
-          fs.writeFileSync("requested_data.json", str)
-        }
-
+        fs.writeFileSync("requested_data.json", str)
       }
     });
-  }).on("error", (err) => {
-    console.log("Error: " + err.message);
-  });
-
+  }).on("error", err => console.log("Error: " + err.message));
 }
+
 module.exports = class R4nasa {
   constructor(token) {
-    this.token = token;
     token2 = token
   }
 
