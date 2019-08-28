@@ -80,7 +80,6 @@ RequestMars = function (rover = 'Curiosity') {
 
     return resp.on('end', () => {
       const json = JSON.parse(data);
-      console.log(json.photos.length);
       if (data == '{"photos":[]}') {
         console.log('sol :', numbe + ' has no data for', rover, 'rover')
         RequestMars(rover)
