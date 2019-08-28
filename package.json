@@ -1,25 +1,24 @@
-
-    "name": "r4nasa-api",
-    "version": "1.0.4",
-    "description": "Package to return space data from nasa APIs",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-      "NASA",
-      "APIs",
-      "Request",
-      "Space",
-      "Mars",
-      "ISS",
-      "https",
-      "rover"
-    ],
-    "author": "R4yan (www.r4yan.ga)",
-    "license": "ISC",
-    "dependencies": {
-      "https": "^1.0.0"
-    }
+{
+  "name": "r4nasa-api",
+  "version": "1.0.4",
+  "description": "Package to return space data from nasa APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NASA",
+    "APIs",
+    "Request",
+    "Space",
+    "Mars",
+    "ISS",
+    "https",
+    "rover"
+  ],
+  "author": "R4yan (www.r4yan.ga)",
+  "license": "ISC",
+  "dependencies": {
+    "https": "^1.0.0"
   }
-  
+}

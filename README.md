@@ -24,11 +24,6 @@ just type this to install the module
 ```shell
 $ npm install r4nasa-api
 ```
-this module has dependencies so it works only if fs and https are installed also this module has a function that retuns the data you requested in a json file called requested_data.json
-```shell
-$ npm install https
-$ npm install fs
-```
 # Example
 at top add the two constants for r4nasa and fs
 ```JavaScript
