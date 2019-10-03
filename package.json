@@ -3,6 +3,7 @@
     "version": "1.0.4",
     "description": "Package to return space data from nasa APIs",
     "main": "index.js",
+    "publishConfig": { "registry": "https://npm.pkg.github.com/" },
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
     },
